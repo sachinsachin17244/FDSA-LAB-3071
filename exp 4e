@@ -1,0 +1,4 @@
+number_list = [18, 25, 3, 41, 5]
+
+avg = sum(number_list) / len(number_list)
+print("The average is", avg)
