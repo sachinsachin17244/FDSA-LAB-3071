@@ -1,0 +1,28 @@
+import nltk
+from nltk.corpus import names
+
+# Ensure NLTK knows the data path
+nltk.data.path.append("C:/nltk_data")
+
+# Create (gender, last-letter) pairs
+nt = [
+    (fid.split('.')[0], name[-1])
+    for fid in names.fileids()
+    for name in names.words(fid)
+]
+
+# Conditional Frequency Distribution
+cfd2 = nltk.ConditionalFreqDist(nt)
+
+# Frequency of 'a' ending
+print("Female ending with 'a':", cfd2['female']['a'])
+print("Male ending with 'a':", cfd2['male']['a'])
+
+# Compare distributions
+print("Female > Male:", cfd2['female'] > cfd2['male'])
+
+# Tabulate selected letters
+cfd2.tabulate(samples=['a', 'e'])
+
+# Plot the distribution
+cfd2.plot()
